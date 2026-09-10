@@ -1,10 +1,10 @@
-# rag-agent-project
+# car-agent
 
 基于 RAG（检索增强生成）与多 Agent 架构的智能汽车服务助手，覆盖车况查询、车控、导航、故障诊断、预约、售后咨询等场景。
 
 ## 技术栈
 
-- **后端**：Python 3.12 + FastAPI + LangChain + LangGraph
+- **后端**：Python 3.12 + FastAPI（WebSocket 流式）+ LangChain + LangGraph
 - **前端**：React 18 + TypeScript + Vite + Tailwind CSS + Zustand + React Flow
 - **向量库**：ChromaDB
 - **协议**：MCP（Model Context Protocol）
@@ -18,7 +18,8 @@ rag_agent_project/
 │   ├── multi_agent.py  # 主控编排器 + 6 个子 Agent
 │   ├── react_agent.py  # ReAct 单 Agent
 │   └── tools/          # Agent 工具与中间件
-├── api/                # FastAPI 接口（WebSocket 流式对话）
+├── api/
+│   └── main.py         # FastAPI 正式入口（WebSocket /ws/chat 流式对话）
 ├── config/             # 配置文件
 ├── data/               # 知识库手册（中文 6 份 + 高德 2 份）
 ├── frontend/           # React 前端
@@ -27,7 +28,7 @@ rag_agent_project/
 ├── prompts/            # Prompt 模板
 ├── rag/                # RAG 检索 + 向量存储
 ├── utils/              # 工具函数
-├── app.py              # 后端入口
+├── app.py              # Streamlit 早期原型（已废弃，正式入口见 api/main.py）
 ├── requirements.txt
 └── test_full.py        # 端到端测试
 ```
@@ -50,11 +51,14 @@ Orchestrator (主控)
 
 ## 快速开始
 
-### 后端
+### 后端（正式入口）
 ```bash
 pip install -r requirements.txt
-python app.py
+python api/main.py
+# 或: uvicorn api.main:app --reload --port 8000
 ```
+
+> 注：`app.py` 为早期 Streamlit 原型，仅供参考，不再维护。
 
 ### 前端
 ```bash
