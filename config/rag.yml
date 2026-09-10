@@ -2,4 +2,4 @@ chat_model_name: xopqwen36v35b
 embedding_model_name: xop3qwen8bembedding
 xf_embedding_base_url: https://maas-api.cn-huabei-1.xf-yun.com/v2
 xf_chat_base_url: https://maas-api.cn-huabei-1.xf-yun.com/v2
-xf_api_key: 3c3e613858421bbe6ad1f8e8838e3f99:NjI3MWY3MTAxODQ5ZmNlYzBmODljNjIw
+xf_api_key: ${XF_API_KEY}  # 通过环境变量 XF_API_KEY 配置，请勿提交真实密钥
